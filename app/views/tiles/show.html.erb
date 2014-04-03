@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @tile.type %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @tile.content %>
+</p>
+
+<p>
+  <b>Grid:</b>
+  <%= @tile.grid_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_tile_path(@tile) %> |
+<%= link_to 'Back', tiles_path %>
