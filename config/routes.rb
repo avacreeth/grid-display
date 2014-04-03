@@ -1,8 +1,8 @@
 YetiGrid::Application.routes.draw do
-  resources :tiles
 
-
-  resources :grids
+  resources :grids do
+    resources :tiles
+  end
 
 
   # The priority is based upon order of creation:
