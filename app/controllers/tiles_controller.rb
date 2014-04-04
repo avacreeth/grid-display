@@ -2,11 +2,44 @@ class TilesController < ApplicationController
   # GET /tiles
   # GET /tiles.json
   def index
-    @tiles = Tile.all
+    @tiles = Tile.for_grid(params[:grid_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tiles }
+      format.json do
+        render json: [
+          {
+            id: 1,
+            type: 'youtube',
+            content: 'L6tAqaCPKTk',
+            color: 'color-1',
+            sizex: 2,
+            sizey: 2,
+            posx: 1,
+            posy: 2
+          },
+          {
+            id: 2,
+            type: 'text',
+            content: 'Hello 2',
+            color: 'color-2',
+            sizex: 1,
+            sizey: 1,
+            posx: 3,
+            poxy: 1
+          },
+          {
+            id: 3,
+            type: 'image',
+            content: 'https://i.chzbgr.com/maxW500/6472264448/h7A02AACD/',
+            color: 'color-3',
+            sizex: 1,
+            sizey: 1,
+            posx: 3,
+            posy: 2
+          }
+        ]
+      end
     end
   end
 
