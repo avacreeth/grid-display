@@ -1,4 +1,4 @@
-<%= form_for(@tile) do |f| %>
+<%= form_for(@tile, url: grid_tiles_path(@grid_id)) do |f| %>
   <% if @tile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tile.errors.count, "error") %> prohibited this tile from being saved:</h2>
@@ -11,17 +11,20 @@
     </div>
   <% end %>
 
+  <div class="description">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
+    <%= f.label :content_type %><br />
+    <%= f.select :content_type, ['text', 'image', 'youtube']%>
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_field :content %>
   </div>
   <div class="field">
-    <%= f.label :grid_id %><br />
-    <%= f.number_field :grid_id %>
+    <%= f.hidden_field :grid_id, value: @grid_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

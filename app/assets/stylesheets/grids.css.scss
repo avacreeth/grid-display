@@ -14,7 +14,10 @@ body {
 
     >span {
       position: absolute;
-      width: 100%;
+      display: block;
+      margin: auto;
+
+      font-size: 10px;
 
       text-align: center;
     }

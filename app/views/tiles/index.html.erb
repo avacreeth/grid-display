@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Type</th>
+    <th>Description</th>
     <th>Content</th>
     <th>Grid</th>
     <th></th>
@@ -12,16 +13,17 @@
 
 <% @tiles.each do |tile| %>
   <tr>
-    <td><%= tile.type %></td>
+    <td><%= tile.content_type %></td>
+    <td><%= tile.description %></td>
     <td><%= tile.content %></td>
     <td><%= tile.grid_id %></td>
-    <td><%= link_to 'Show', tile %></td>
-    <td><%= link_to 'Edit', edit_tile_path(tile) %></td>
-    <td><%= link_to 'Destroy', tile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'AWESOME!', grid_tile_path(@grid_id, tile, awesome: true), method: :put%></td>
+    <td><%= link_to 'LAME!', grid_tile_path(@grid_id, tile, lame: true), method: :put%></td>
+    <td><%= link_to 'KILL!', grid_tile_path(@grid_id, tile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Tile', new_tile_path %>
+<%= link_to 'New Tile', new_grid_tile_path(@grid_id) %>

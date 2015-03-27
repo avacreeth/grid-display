@@ -3,6 +3,8 @@
 
 $(function() {
 
+    var colorIndex = 0;
+
     function init() {
         var $container = $(".grid-container")
 
@@ -18,7 +20,7 @@ $(function() {
     function createGrid($container) {
         var grid = $container.gridster({
             widget_margins: [0, 0],
-            widget_base_dimensions: [200, 200],
+            widget_base_dimensions: [240, 216],
             widget_selector: "div",
         }).data("gridster");
 
@@ -74,7 +76,11 @@ $(function() {
             $tile.attr("data-col", tile.posx);
             $tile.attr("data-row", tile.posy);
         } else {
-            grid.add_widget('<div class="' + tile.color + '" id="tile-' + tile.id + '"></div>', tile.sizex, tile.sizey, tile.posx, tile.posy);
+            var colors = ['color-1', 'color-2', 'color-3', 'color-4'];
+            var color = colors[colorIndex % colors.length];
+            colorIndex++;
+
+            grid.add_widget('<div class="' + color + ' yetitile-' + tile.rel_size + '" id="tile-' + tile.id + '"></div>', tile.sizex, tile.sizey, tile.posx, tile.posy);
             setContent($container.find("#tile-" + tile.id), tile);
         }
     }
@@ -83,7 +89,7 @@ $(function() {
         var content = $tile.data("content");
 
         // Content changed
-        if (!(content === "" + tile.type + tile.content)) {
+        if (!(content === "" + tile.type + tile.content) || tile.type === 'text') {
             switch(tile.type) {
             case "text":
                 setText($tile, tile);
@@ -106,6 +112,9 @@ $(function() {
 
     function setText($tile, tile) {
         $tile.html("<span>" + tile.content + "</span>");
+        var $span = $tile.find("span");
+        var newFontSize = Math.min(($tile.width()/$span.width()) * 9, 160);
+        $span.css({ "font-size": newFontSize, "line-height": "" + $tile.height() + "px", "position": "relative" });
     }
 
     function setImage($tile, tile) {

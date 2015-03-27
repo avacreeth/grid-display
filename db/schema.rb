@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403192737) do
+ActiveRecord::Schema.define(:version => 20140404185841) do
 
   create_table "grids", :force => true do |t|
     t.string   "name"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(:version => 20140403192737) do
   end
 
   create_table "tiles", :force => true do |t|
-    t.string   "type"
+    t.string   "content_type"
     t.text     "content"
     t.integer  "grid_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "position"
+    t.text     "description"
   end
 
 end
